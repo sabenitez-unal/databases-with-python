@@ -13,7 +13,7 @@ db.execute("""
 db.execute("""
     CREATE TABLE counts (
         count INTEGER,
-        email TEXT
+        org TEXT
     );
 """)
 
@@ -28,24 +28,24 @@ with open(f"files/{fname}") as text:
         # Va a la siguiente línea si no.
         if not line.startswith("From: "): continue
 
-        # Se extrae el email
+        # Se extrae el nombre de dominio desde el email del remitente.
         pieces = line.split()
-        email = pieces[1]
+        org = pieces[1].replace("@", " ").split()[1]
 
         # Buscando coincidencias en la DB
-        db.execute("SELECT count from counts WHERE email = ?", (email,))
+        db.execute("SELECT count from counts WHERE org = ?", (org,))
         row = db.fetchone()
         if row is None:     # Si no está guardado ese mail aún.
-            query = "INSERT INTO counts (count, email) VALUES (1, ?)"
+            query = "INSERT INTO counts (count, org) VALUES (1, ?)"
         else:               # Añadir a la cuenta del email.
-            query = "UPDATE counts SET count = count + 1 WHERE email = ?"
+            query = "UPDATE counts SET count = count + 1 WHERE org = ?"
 
         # Ejecución de query y escritura en DB.
-        db.execute(query, (email,))
+        db.execute(query, (org,))
         conn.commit()
 
 # Cantidad de coincidencias por email en orden descendente.
-query = "SELECT email, count FROM counts ORDER BY count DESC LIMIT 10"
+query = "SELECT org, count FROM counts ORDER BY count DESC LIMIT 10"
 for row in db.execute(query):
     # Impresión 'email' : 'count'
     print(f"{row[0]}: {row[1]}")
