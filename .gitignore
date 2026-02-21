@@ -1,2 +1,5 @@
 # Entorno virtual de python
 .venv/
+
+# scripts temporales
+src/script.py
