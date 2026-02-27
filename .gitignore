@@ -3,3 +3,6 @@
 
 # scripts temporales
 src/script.py
+
+# Base de datos
+db/my-database.sqlite
