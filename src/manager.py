@@ -19,7 +19,7 @@ db.execute("""
 
 # Pidiendo archivo de correos.
 fname = input("Ingresa el nombre del archivo: ")
-if len(fname) < 1 : fname = "mbox-email.txt"
+if len(fname) < 1 : fname = "mbox.txt"
 
 # Lectura de documento .txt con correos recibidos.
 with open(f"files/{fname}") as text:
