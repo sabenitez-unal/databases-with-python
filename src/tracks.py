@@ -100,7 +100,7 @@ def write_database(relative_loc: str):
             
             query = """
                 INSERT OR IGNORE INTO Track
-                (title, album_id, len, rating, count, genre)
+                (title, album_id, len, rating, count, genre_id)
                 values (?, ?, ?, ?, ?, ?)
             """
             params = (track[0], album_id, track[5], track[4], track[3], genre_id)
