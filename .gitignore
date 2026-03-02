@@ -6,3 +6,5 @@ src/script.py
 
 # Base de datos
 db/my-database.sqlite
+db/mydatabase2.sqlite
+db/mydatabase2.sqlite-journal
