@@ -17,7 +17,7 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 """Creacion de DB"""
-cur.execute("CREATE TABLE IF NOT EXISTS Locations (adress TEXT, geodata TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS Locations (address TEXT, geodata TEXT)")
 
 
 """Lectura de datos"""
@@ -77,7 +77,7 @@ with open("geodata/where.data") as data:
 
         if count % 10 == 0:
             print("Haciendo pequeña pausa...")
-            time.sleep(5)
+            # time.sleep(5)
 
     if notfount > 0: print(f"{notfount} objetos cuyas ubicaciones no pudieron encontrarse.")
 
